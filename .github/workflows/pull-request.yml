@@ -85,6 +85,9 @@ jobs:
     name: Post comment
     runs-on: ubuntu-latest
 
+    permissions:
+      pull-requests: write
+
     needs: [build, test]
 
     steps:
