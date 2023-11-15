@@ -26,14 +26,14 @@ jobs:
     steps:
       - name: Hello world action step
         run: echo "Hello 🌏!"
-    
+
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-      # To reference external workflows, we use the `uses` keyword.
-      # The thing after the `@` is the version of the workflow, and is a Git tag.
+        # To reference external workflows, we use the `uses` keyword.
+        # The thing after the `@` is the version of the workflow, and is a Git tag.
         uses: actions/checkout@v3
 
       - name: Install dependencies
@@ -41,3 +41,42 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install2@v1
+
+      - name: Test
+        run: npm run test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install2@v1
+
+      - name: Lint
+        run: npm run lint:check
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install2@v1
+
+      - name: Lint
+        run: npm run format:check
